@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mentoring_app_totvs/app/module/custom_floating_action_button.dart';
-import 'package:mentoring_app_totvs/app/module/custom_list_tile.dart';
-import 'package:mentoring_app_totvs/app/module/custom_title_widget.dart';
-import 'package:mentoring_app_totvs/app/module/numb_counter_widget_provider.dart';
+import 'package:mentoring_app_totvs/app/pages/bloc/counter_bloc.dart';
+import 'package:mentoring_app_totvs/app/pages/cubit/counter_cubit.dart';
+import 'package:mentoring_app_totvs/app/pages/pet_form_page.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,78 +13,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(
-          title:
-              'Totvs mentoria,Totvs mentoriaTotvs mentoria,Totvs mentoriaTotvs mentoria,Totvs mentoriaTotvs mentoria,Totvs mentoriaTotvs mentoria,Totvs mentoria'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  List<String> listNomes = [
-    'Roni',
-    'Raiane',
-    'Leticia',
-    'Joao',
-    'Wagner',
-    'Luiz',
-    'Matheus(Capucho)',
-    'Raiane',
-  ];
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        shadowColor: Colors.transparent,
-        backgroundColor: Colors.transparent,
-        title: CustomTitleWidget(title: 'Titulo totvs', colorText: Colors.green.shade900),
-      ),
-      body: NumbCounterWidgetProvider(
-        count: _counter,
-        child: Center(
-          child: SingleChildScrollView(
-            child: Container(
-              padding: const EdgeInsets.all(20),
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: listNomes.map((item) {
-                  return CustomListTile(itemName: item);
-                }).toList(),
-              ),
-            ),
+    return MultiProvider(
+      providers: [
+        Provider(create: (context) => CounterCubit()),
+        Provider(create: (context) => CounterBloc()),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          inputDecorationTheme: const InputDecorationTheme().copyWith(
+            fillColor: Colors.amber,
+            focusColor: Colors.blue,
           ),
         ),
-      ),
-      floatingActionButton: CustomFLoatingActionButton(
-        incrementCount: _incrementCounter,
+        home: const PetFormPage(),
       ),
     );
   }
