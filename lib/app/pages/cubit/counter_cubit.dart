@@ -1,17 +1,27 @@
 import 'package:bloc/bloc.dart';
 import 'package:mentoring_app_totvs/app/pages/cubit/counter_cubit_state.dart';
 
-class CounterCubit extends Cubit<CounterCubitState> {
+abstract class ICounterCubit extends Cubit<CounterCubitState> {
+  ICounterCubit(super.initialState);
+
+  Future<void> increincrementCount();
+
+  Future<void> decrementCount();
+}
+
+class CounterCubit extends ICounterCubit {
   CounterCubit() : super(InitialCounterCubitState());
 
   int count = 0;
 
-  void incrementCount() {
+  @override
+  Future<void> increincrementCount() async {
     count++;
     emit(SuccessCounterCubitState(count));
   }
 
-  void decrementCount() {
+  @override
+  Future<void> decrementCount() async {
     count--;
     emit(SuccessCounterCubitState(count));
   }

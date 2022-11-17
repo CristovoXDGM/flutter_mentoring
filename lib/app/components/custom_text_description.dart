@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mentoring_app_totvs/app/module/numb_counter_widget_provider.dart';
+import 'package:mentoring_app_totvs/app/components/numb_counter_widget_provider.dart';
 
 class CustomTextDescription extends StatefulWidget {
   const CustomTextDescription({super.key});

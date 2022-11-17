@@ -1,7 +1,7 @@
+import 'package:ds_mentoria_totvs/ds_mentoria_totvs.dart';
 import 'package:flutter/material.dart';
-import 'package:mentoring_app_totvs/app/pages/home_page.dart';
-
-import 'package:mentoring_app_totvs/app/pages/pet_form_page.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mentoring_app_totvs/app/core/constants/routes.dart';
 
 class CustomPetShopScaffold extends StatefulWidget {
   const CustomPetShopScaffold({super.key, required this.bodyScaffold});
@@ -21,24 +21,13 @@ class _CustomPetShopScaffoldState extends State<CustomPetShopScaffold> {
           children: [
             ListTile(
               title: const Text('Home page'),
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const MyHomePage(),
-                  ),
-                );
-              },
+              onTap: () => Modular.to.popAndPushNamed(AppRoutes.rootRout),
             ),
             ListTile(
-              title: const Text('Formulario de pet'),
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const PetFormPage(),
-                  ),
-                );
-              },
-            ),
+                title: const Text('Formulario de pet'),
+                onTap: () => Modular.to.popAndPushNamed(
+                      AppRoutes.petFormPage,
+                    )),
             ListTile(
               title: const Text('Voltar'),
               onTap: () {
@@ -74,16 +63,10 @@ class _CustomPetShopScaffoldState extends State<CustomPetShopScaffold> {
           )
         ],
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          color: Colors.grey.shade400,
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
-          ),
-        ),
+      body: CustomPetBodyScaffold(
         height: size.height,
         width: double.infinity,
+        defaultBodyColor: AppColors().primaryColors[AppColorKeys.primaryColorLight]['1'],
         child: widget.bodyScaffold,
       ),
     );

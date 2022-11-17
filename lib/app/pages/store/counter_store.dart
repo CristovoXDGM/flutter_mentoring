@@ -1,13 +1,15 @@
-abstract class CounterState {}
+import 'package:flutter/material.dart';
+import 'package:mentoring_app_totvs/app/pages/store/counter_store_state.dart';
 
-class LoadingCounterState extends CounterState {}
+class CounterStore extends ValueNotifier<CounterState> {
+  CounterStore() : super(InitialCounterState());
 
-class InitialCounterState extends CounterState {}
+  int counter = 0;
 
-class SuccesCounterState extends CounterState {
-  final String message;
-  final int count;
-  SuccesCounterState({this.count = 0, this.message = 'Valor atualizado com sucesso'});
+  void incrementCount() async {
+    value = LoadingCounterState();
+    await Future.delayed(const Duration(seconds: 2));
+    counter++;
+    value = SuccesCounterState(count: counter);
+  }
 }
-
-class ErrorCounterState extends CounterState {}

@@ -31,13 +31,24 @@ environment:
 dependencies:
   bloc: ^8.1.0
   cupertino_icons: ^1.0.2
+  dio: ^4.0.6
+  ds_mentoria_totvs:
+    path: ../mentoring_app_totvs/ds_mentoria_totvs/
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.1
+  flutter_bloc: ">=8.1.1"
+  flutter_mobx: ^2.0.6+4
+  flutter_modular: ^5.0.3
   google_fonts: ^3.0.1
+  mobx: ^2.1.2
+  mobx_codegen: ^2.1.0
+  mocktail: ^0.3.0
   provider: ^6.0.4
+  uno: ^1.0.1+5
 
 dev_dependencies:
+  bloc_test: null
+  build_runner: ^2.2.0
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter

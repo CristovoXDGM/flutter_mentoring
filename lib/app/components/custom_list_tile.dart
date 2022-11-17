@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mentoring_app_totvs/app/module/numb_counter_widget_provider.dart';
+import 'package:mentoring_app_totvs/app/components/numb_counter_widget_provider.dart';
 
 class CustomListTile extends StatefulWidget {
   const CustomListTile({super.key, required this.itemName});
